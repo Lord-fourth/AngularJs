@@ -70,6 +70,7 @@ app.controller("GameController",['$scope',function($scope){
             $scope.input.letter='';
             if($scope.displayWord==selectedWord)
             {
+                
                 console.log('hi');
                 alert('you have won!');
                 newGame();
