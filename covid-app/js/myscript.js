@@ -4,35 +4,67 @@ let app = angular.module("MyApp", []);
 app.controller("MyCtrl", ($scope, $http) => {
   //controller
   $scope.title = "covid-19 cases";
-  $scope.changeValue = () => {
-    $scope.title = "Naruto";
-  };
+  $scope.countryList = [];
+  let country = "";
+
   //Calling api
+
+  console.log("inside fetch");
+  console.log("outside fetch");
+
+  $http.get(`${URL}/countries/`).then(
+    (response) => {
+      //console.log("url:" + "${URL}/countries/${country}");
+
+      tempResponse = response.data.countries;
+      // console.log("country list:" + $scope.countryList);
+      tempResponse.forEach((element) => {
+        // console.log("element name:" + element.name);
+        $scope.countryList.push(element.name);
+      });
+
+      console.log(
+        "countrylist length:" + Object.keys($scope.countryList).length
+      );
+    },
+    (error) => {
+      console.log(error.data);
+
+      console.log(error);
+    }
+  );
   $http.get(URL).then(
     (response) => {
       //success
       console.log("in success");
-      console.log(response.data);
+      // console.log(response.data);
       $scope.allData = response.data;
     },
     (error) => {
       //error
-      console.log("in error");
+      // console.log("in error");
       console.log(error);
     }
   );
+
   $scope.get_cData = () => {
-    console.log($scope.c);
-    // console.log("url:" + `${URL}/countries/${country}`);
-    let country = $scope.c;
-    if (country == "") {
-      $scope.cData = undefined;
-      return;
-    }
+    // console.log($scope.c);
+    // country = $scope.c;
+
+    // if (country == "") {
+    //   $scope.cData = undefined;
+    //   return;
+    // }
+
+    /* country list*/
+    console.log("hi");
+
+    //country data
     $http.get(`${URL}/countries/${country}`).then(
       (response) => {
         //console.log("url:" + "${URL}/countries/${country}");
-        console.log(response.data);
+        //  console.log(response.data);
+        console.log("in country");
         $scope.cData = response.data;
       },
       (error) => {
@@ -41,5 +73,11 @@ app.controller("MyCtrl", ($scope, $http) => {
         console.log(error);
       }
     );
+  };
+  $scope.setCountry = function (item) {
+    console.log("inside setCountry:" + item);
+    country = item;
+    $scope.c = item;
+    $scope.get_cData();
   };
 });

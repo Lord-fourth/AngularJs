@@ -29,12 +29,16 @@
     <div class="container">
       <div class="jumbotron py-3">
         <h1 class="text-center">{{title}}</h1>
-        <p>Update on Coronovirus</p>
+        <h2>Update on Coronovirus</h2>
         <!-- <button ng-click="changeValue()">
                 Btn
             </button> -->
 
         <!-- All data -->
+
+        <!-- <div ng-if="c">
+          <p>you selected {{c}}</p>
+        </div> -->
         <div class="row text-center">
           <div class="col-md-4">
             <div class="card bg-warning text-white">
@@ -64,18 +68,78 @@
         <!-- end of all data -->
 
         <!-- Form -->
-        <input
+        <!-- <input
           type="text "
           class="form-control mt-4"
           placeholder="enter country"
           ng-model="c"
           ng-change="get_cData()"
-        />
+        /> -->
 
+        <!-- <div>
+          <p>Select a country</p>
+        </div> -->
+        <!-- drop down -->
+
+        <div class="dropdown">
+          <!-- <label for="c">Choose a country:</label> -->
+          <!-- <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Dropdown button
+          </button> -->
+
+          <!-- <select
+            ng-options="x for x in countryList"
+            ng-model="c"
+            ng-change="get_cData()"
+          >
+    
+          </select> -->
+        </div>
+
+        <div class="dropdown mt-4">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            Choose a country <span class="caret"></span>
+          </button>
+          <!-- <p>{{c}}</p> -->
+          <!-- 
+          <select
+            ng-options="x for x in countryList"
+            ng-model="c"
+            ng-change="get_cData()"
+          ></select> -->
+
+          <ul class="dropdown-menu pre-scrollable">
+            <li
+              class="dropdown-item"
+              ng-repeat="x in countryList"
+              ng-click="setCountry(x)"
+              ng-model="c"
+              ng-change="get_cData()"
+            >
+              {{x}}
+            </li>
+          </ul>
+        </div>
+        <div ng-if="c" class="mt-4">
+          <h3>you selected {{c}}</h3>
+        </div>
+
+        <!-- end drop down -->
         <!-- c data -->
         <div class="container-flud" ng-if="cData">
           <h1 class="text-center mt-4 text-uppercase">{{c}} status</h1>
-          <div class="row text-center mt-4" ">
+          <div class="row text-center mt-4">
             <div class="col-md-4">
               <div class="card bg-warning text-white">
                 <div class="card-body">
