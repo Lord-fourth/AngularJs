@@ -1,7 +1,24 @@
 const URL = "https://covid19.mathdro.id/api";
 
-let app = angular.module("MyApp", []);
-app.controller("MyCtrl", ($scope, $http) => {
+let app = angular.module("MyApp", ["ngRoute"]);
+
+app.config(function ($routeProvider) {
+  $routeProvider
+
+    .when("/country", {
+      templateUrl: "country.html",
+      controller: "countryController",
+    })
+    .when("/", {
+      templateUrl: "world.html",
+      controller: "worldController",
+    })
+    .when("/Austria", {
+      templateUrl: "austria.html",
+      controller: "austriaController",
+    });
+});
+app.controller("MyCtrl", ($scope, $http, $location) => {
   //controller
   $scope.title = "covid-19 cases";
   $scope.countryList = [];
@@ -59,6 +76,8 @@ app.controller("MyCtrl", ($scope, $http) => {
     /* country list*/
     console.log("hi");
 
+    //go functionn using
+    $scope.go($scope.c);
     //country data
     $http.get(`${URL}/countries/${country}`).then(
       (response) => {
@@ -80,4 +99,13 @@ app.controller("MyCtrl", ($scope, $http) => {
     $scope.c = item;
     $scope.get_cData();
   };
+
+  $scope.go = function (page) {
+    console.log("page is:" + page);
+    $location.path("/" + page);
+  };
 });
+
+app.controller("austriaController", function ($scope, $location) {});
+app.controller("countryController", function ($scope, $location) {});
+app.controller("worldController", function ($scope, $location) {});

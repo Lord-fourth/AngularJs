@@ -23,6 +23,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="js/myscript.js"></script>
   </head>
   <body ng-app="MyApp" ng-controller="MyCtrl">
@@ -39,32 +40,7 @@
         <!-- <div ng-if="c">
           <p>you selected {{c}}</p>
         </div> -->
-        <div class="row text-center">
-          <div class="col-md-4">
-            <div class="card bg-warning text-white">
-              <div class="card-body">
-                <h3>confirmed Cases</h3>
-                <h3>{{allData.confirmed.value}}</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-success text-white">
-              <div class="card-body">
-                <h3>Recovered Cases</h3>
-                <h3>{{allData.recovered.value}}</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-danger text-white">
-              <div class="card-body">
-                <h3>Death Cases</h3>
-                <h3>{{allData.deaths.value}}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+
         <!-- end of all data -->
 
         <!-- Form -->
@@ -79,6 +55,18 @@
         <!-- <div>
           <p>Select a country</p>
         </div> -->
+
+        <!-- view start -->
+
+        <!-- view end -->
+
+        <div>
+          <a href="#!courses">Courses@geeksforgeeks</a>
+          <br />
+          <a href="#!internships">Internships@geeksforgeeks</a>
+          <br />
+          <div ng-view></div>
+        </div>
         <!-- drop down -->
 
         <div class="dropdown">
@@ -103,69 +91,17 @@
           </select> -->
         </div>
 
-        <div class="dropdown mt-4">
-          <button
-            class="btn btn-primary dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            Choose a country <span class="caret"></span>
-          </button>
-          <!-- <p>{{c}}</p> -->
-          <!-- 
-          <select
-            ng-options="x for x in countryList"
-            ng-model="c"
-            ng-change="get_cData()"
-          ></select> -->
-
-          <ul class="dropdown-menu pre-scrollable">
-            <li
-              class="dropdown-item"
-              ng-repeat="x in countryList"
-              ng-click="setCountry(x)"
-              ng-model="c"
-              ng-change="get_cData()"
-            >
-              {{x}}
-            </li>
-          </ul>
-        </div>
         <div ng-if="c" class="mt-4">
           <h3>you selected {{c}}</h3>
         </div>
 
         <!-- end drop down -->
         <!-- c data -->
-        <div class="container-flud" ng-if="cData">
-          <h1 class="text-center mt-4 text-uppercase">{{c}} status</h1>
-          <div class="row text-center mt-4">
-            <div class="col-md-4">
-              <div class="card bg-warning text-white">
-                <div class="card-body">
-                  <h3>confirmed Cases</h3>
-                  <h3>{{cData.confirmed.value}}</h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card bg-success text-white">
-                <div class="card-body">
-                  <h3>Recovered Cases</h3>
-                  <h3>{{cData.recovered.value}}</h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card bg-danger text-white">
-                <div class="card-body">
-                  <h3>Death Cases</h3>
-                  <h3>{{cData.deaths.value}}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <a href="#!country">go to country</a>
+        <button class="btn-primary" ng-click="get_cData" href="#!internships">
+          For country
+        </button>
+        <!-- <div ng-view></div> -->
         <!-- end c data -->
       </div>
     </div>
