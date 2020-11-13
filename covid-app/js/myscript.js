@@ -9,13 +9,13 @@ app.config(function ($routeProvider) {
       templateUrl: "country.html",
       controller: "countryController",
     })
+    .when("/:countryName", {
+      templateUrl: "country.html",
+      controller: "countryController",
+    })
     .when("/", {
       templateUrl: "world.html",
       controller: "worldController",
-    })
-    .when("/Austria", {
-      templateUrl: "austria.html",
-      controller: "austriaController",
     });
 });
 app.controller("MyCtrl", ($scope, $http, $location) => {
@@ -23,6 +23,7 @@ app.controller("MyCtrl", ($scope, $http, $location) => {
   $scope.title = "covid-19 cases";
   $scope.countryList = [];
   let country = "";
+  //$scope.country = $routeParams.countryName;
 
   //Calling api
 

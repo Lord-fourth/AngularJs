@@ -24,3 +24,32 @@
     </div>
   </div>
 </div>
+
+<div class="dropdown mt-4">
+  <button
+    class="btn btn-primary dropdown-toggle"
+    type="button"
+    data-toggle="dropdown"
+  >
+    Choose a country <span class="caret"></span>
+  </button>
+  <!-- <p>{{c}}</p> -->
+  <!-- 
+      <select
+        ng-options="x for x in countryList"
+        ng-model="c"
+        ng-change="get_cData()"
+      ></select> -->
+
+  <ul class="dropdown-menu pre-scrollable">
+    <li
+      class="dropdown-item"
+      ng-repeat="x in countryList"
+      ng-click="setCountry(x)"
+      ng-model="c"
+      ng-change="get_cData()"
+    >
+      {{x}}
+    </li>
+  </ul>
+</div>
